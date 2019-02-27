@@ -1,7 +1,7 @@
 CPSC 408\
 Assignment 2\
 Spring 2019\
-Alfonso Castanos\
+Alfonso Castaños\
 Email: casta145@mail.chapman.edu\
 SID: 2283681
 
