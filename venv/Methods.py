@@ -5,11 +5,20 @@ from Student import Student
 class Methods:
 
     #Checks if the student you are looking for to update is in the database
-    def validatenum(idnum):
+    def validatenum(self, idnum):
         c.execute("SELECT StudentID FROM Student WHERE StudentId = " + str(idnum))
         check = c.fetchall()
         if check == []:
             print("Student does not exist in the Database")
+            return False
+        else:
+            return True
+
+    def validatemajor(self, major):
+        c.execute("SELECT StudentID FROM Student WHERE Lower(Major) = major")
+        check = c.fetchall()
+        if check == []:
+            print("Major does not exist in the Database")
             return False
         else:
             return True
@@ -126,30 +135,43 @@ class Methods:
             major = input().lower()
             c.execute('SELECT * FROM Student WHERE LOWER(Major) = ? ', (major,))
             table = c.fetchall()
-            for x in table:
-                print(x)
-            return
+            if table == []:
+                print("Major does not exist in database\n")
+                Methods.search()
+            else:
+                for x in table:
+                    print(x)
+                return
         elif att == 'gpa': #check if gpa exists
             print("Enter the gpa to search:")
             gpa = float(input())
             c.execute('SELECT * FROM Student WHERE GPA = ?', (gpa,))
             table = c.fetchall()
-            for x in table:
-                print(x)
-            return
+            if table == []:
+                print("Major does not exist in database\n")
+                Methods.search()
+            else:
+                for x in table:
+                    print(x)
+                return
         elif att == 'advisor': #check if advisor exists
             print("Enter the advisor to search:")
             advisor = input().lower()
             c.execute('SELECT * FROM Student WHERE LOWER(FacultyAdvisor) = ?', (advisor,))
             table = c.fetchall()
-            for x in table:
-                print(x)
-            return
+            if table == []:
+                print("Major does not exist in database\n")
+                Methods.search()
+            else:
+                for x in table:
+                    print(x)
+                return
         else:
             print('An Error Occured... Please try again.\n')
             Methods.search()
 
-    def exit(self):
+    @staticmethod
+    def exit():
         print("Have a Nice Day!")
         print("Goodbye!\n")
         conn.close()
