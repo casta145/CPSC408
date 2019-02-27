@@ -148,7 +148,7 @@ class Methods:
             c.execute('SELECT * FROM Student WHERE GPA = ?', (gpa,))
             table = c.fetchall()
             if table == []:
-                print("Major does not exist in database\n")
+                print("GPA does not exist in database\n")
                 Methods.search()
             else:
                 for x in table:
@@ -160,7 +160,7 @@ class Methods:
             c.execute('SELECT * FROM Student WHERE LOWER(FacultyAdvisor) = ?', (advisor,))
             table = c.fetchall()
             if table == []:
-                print("Major does not exist in database\n")
+                print("Advisor does not exist in database\n")
                 Methods.search()
             else:
                 for x in table:
