@@ -3,6 +3,7 @@ from Methods import Methods
 
 class Menu:
 
+    #Menu of the choices you can take including an exit option to end the program
     @staticmethod
     def display():
         print("What would you like to do:\n")

@@ -2,6 +2,7 @@ import sqlite3
 
 class Connection:
 
+    #Creates a connection, checks if the database exists, and if not creates. If it does, returns to display menu
     @staticmethod
     def dbconnect():
         conn = sqlite3.connect("StudentDB.db")

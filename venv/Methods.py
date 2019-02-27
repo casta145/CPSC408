@@ -1,9 +1,10 @@
-import sqlite3
 import sys
+import sqlite3
 from Student import Student
 
 class Methods:
 
+    #Checks if the student you are looking for to update is in the database
     def validatenum(idnum):
         c.execute("SELECT StudentID FROM Student WHERE StudentId = " + str(idnum))
         check = c.fetchall()
@@ -13,6 +14,7 @@ class Methods:
         else:
             return True
 
+    #Displays the Data in the Database
     @staticmethod
     def displayinfo():
         c.execute("SELECT * FROM Student")
@@ -21,8 +23,9 @@ class Methods:
             print(x)
         return
 
+    #Creates a new entry for the database
     @staticmethod
-    def newentry(): #need to bulletproof string inputs and be able to ask to quit
+    def newentry():
         try:
             print("Enter First Name:")
             first = input()
@@ -44,6 +47,7 @@ class Methods:
             print("One or more of your inputs are invalid. Please Try Again...")
             Methods.newentry()
 
+    #Updates the major, advisor, or both of a student by searching their ID
     @staticmethod
     def updateinfo():
         try:
@@ -88,6 +92,7 @@ class Methods:
             print("An Error...Please try Again\n")
             Methods.updateinfo()
 
+    #Deletes student from database by their student ID
     @staticmethod
     def delentry():
         try:
@@ -107,15 +112,16 @@ class Methods:
             print("An Error occured... Please try again\n")
             Methods.delentry()
 
+    #searches database for students with common Major, GPA, or Advisor and prints it out
     @staticmethod
-    def search(): #needs to check if major, gpa, and advisor exist
+    def search():
         print("Search by Major, GPA, or Advisor")
         print("Enter your search attribute:")
         print("(or type 'quit' to exit)")
         att = input().lower()
         if att == 'quit':
             return
-        elif att == 'major':
+        elif att == 'major': #check if major exists
             print("Enter the major to search:")
             major = input().lower()
             c.execute('SELECT * FROM Student WHERE LOWER(Major) = ? ', (major,))
@@ -123,7 +129,7 @@ class Methods:
             for x in table:
                 print(x)
             return
-        elif att == 'gpa':
+        elif att == 'gpa': #check if gpa exists
             print("Enter the gpa to search:")
             gpa = float(input())
             c.execute('SELECT * FROM Student WHERE GPA = ?', (gpa,))
@@ -131,7 +137,7 @@ class Methods:
             for x in table:
                 print(x)
             return
-        elif att == 'advisor':
+        elif att == 'advisor': #check if advisor exists
             print("Enter the advisor to search:")
             advisor = input().lower()
             c.execute('SELECT * FROM Student WHERE LOWER(FacultyAdvisor) = ?', (advisor,))
