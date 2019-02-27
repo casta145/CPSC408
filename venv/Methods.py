@@ -2,7 +2,6 @@ import sqlite3
 import sys
 from Student import Student
 
-
 class Methods:
 
     def validatenum(idnum):
@@ -143,6 +142,12 @@ class Methods:
         else:
             print('An Error Occured... Please try again.\n')
             Methods.search()
+
+    def exit(self):
+        print("Have a Nice Day!")
+        print("Goodbye!\n")
+        conn.close()
+        sys.exit()
 
 conn = sqlite3.connect("StudentDB.db")
 c = conn.cursor()
